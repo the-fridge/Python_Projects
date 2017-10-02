@@ -14,7 +14,8 @@ consumerSecret = input('Enter your consumer secret: ')
 accessToken = input('Enter your access token: ')
 accessSecret = input('Enter your access secret: ')
 
-# OPEN ZE HANDLE
+# OPEN HANDLE TO FILE
+#we will have all the tweets stored here
 handle=open('tweets.txt','w')
 
 # Auth variables
@@ -26,6 +27,7 @@ api = tweepy.API(auth)
 for status in tweepy.Cursor(api.home_timeline).items(100):
     # Process a single status
     print (status.text)
+    #utf-8 encoding for readability
     handle.write(status.text.encode('utf-8'))
     handle.write('\n \n')
 handle.close()
