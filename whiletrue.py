@@ -1,0 +1,2 @@
+While True:
+  print('\n')
