@@ -1,5 +1,11 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# authors: unknown / Pierre Bouillon
+
+"""`random_game.py` is a small game
+in which you have to find a combination of
+CODE_LENGTH numbers
+"""
 
 import random
 from random import sample
@@ -47,7 +53,7 @@ class Secret_Code(object):
         convert the user code as a list and compare it
         pass its attribute _solved on true if everything match
 
-        Attributes:
+        Arguments:
             - usr_code : (str) the input of the user
 
         Returns:

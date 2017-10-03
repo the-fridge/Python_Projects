@@ -15,7 +15,7 @@ from time import time
 def bubble_sort(array): 
     """ Bubble sort implementation
 
-    Attributes:
+    Arguments:
         - array : (int[]) array of int to sort
 
     Returns:
@@ -30,7 +30,7 @@ def bubble_sort(array):
 def insertion_sort(array):
     """ Insertion sort implementation
 
-    Attributes:
+    Arguments:
         - array : (int[]) array of int to sort
 
     Returns:
@@ -46,7 +46,7 @@ def insertion_sort(array):
 def selection_sort(array):
     """ Selection sort implementation
 
-    Attributes:
+    Arguments:
         - array : (int[]) array of int to sort
 
     Returns:
@@ -79,7 +79,7 @@ def get_sort_time(sort, array):
 def get_random_array(size=50, start=0, end=200):
     """ Generate a random array of int
 
-    Attributes:
+    Arguments:
         - size  : (int) size of the array
         - start : (int) smallest number that can be picked
         - end   : (int) biggest number that can be picked
@@ -92,7 +92,7 @@ def get_random_array(size=50, start=0, end=200):
 def print_best_sort(algorithms):
     """ Print sort algorithms results
 
-    Attributes:
+    Arguments:
         algorithms : (dict) values as {algorithm: execution time}
     """
     msg = 'Sorts order by efficiency:\n'
@@ -106,7 +106,7 @@ def print_best_sort(algorithms):
 def print_results(algorithms):
     """ Print best sort algorithms regarding their execution time
 
-    Attributes:
+    Arguments:
         algorithms : (dict) values as {algorithm: execution time}
     """
     for key in algorithms:

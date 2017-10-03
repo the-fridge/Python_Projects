@@ -11,7 +11,7 @@ def readable_timedelta(days):
 
     original function by Syed Marwan Jamal
 
-    Attributes:
+    Arguments:
         - days : (int) amount of day to translate
 
     Returns:
@@ -26,7 +26,7 @@ def readable_timedelta_reworked(days):
 
     reworked function by Pierre Bouillon
 
-    Attributes:
+    Arguments:
         - days : (int) amount of day to translate
 
     Returns:
