@@ -1,42 +1,58 @@
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import random
+from random import sample
+from random import shuffle
 
-def get_guess():
-    return list(input("What is Your Guess?"))
+CODE_LENGTH = 3
+MAX_DIGIT   = 10
 
-def generate_code():
-    digits = [str(num) for num in range(10)]
+class Secret_Code(object):
+    def __init__(self):
+        self._solved = False
+        self._code = self._generate ()
 
-    random.shuffle(digits)
+    def _generate(self):
+        code = [num for num in range(MAX_DIGIT)]
+        return sample(code, CODE_LENGTH)
 
-    return digits[:3]
+    def _get_matches(self, usr_list):
+        match = 0
+        for i in range(len(self._code)):
+            if usr_list[i] == self._code[i]:
+                match += 1
+        return match
 
-def generate_clues(code,user_guess):
-    clues = []
-    if user_guess == code:
-        return "CODE CRACKED!"
+    def guess(self, usr_code):
+        match    = 0
 
-    for ind,num in enumerate(user_guess):
-        if num == code[ind]:
-            clues.append("match")
-        elif num in code:
-            clues.append("Close")
+        usr_code = [int(c) for c in usr_code]
+        match = self._get_matches(usr_code)
 
-    if clues == []:
-        return ["Nope"]
-    else:
-        return clues
+        if match == len(self._code):
+            self._solved = True
+            return 'Well done !'
+        elif match > 0 :
+            return 'Almost {} correct(s)'.format(match)
+        else :
+            return 'No match'
 
-print ("Welcome Code Breaker!")
+    def solved(self):
+        return self._solved
 
-secret_code = generate_code()
 
-clue_report = []
+def start_game() :
+    guess_msg = 'Guess the {} digits of the code: '
+    guess_msg = guess_msg.format(CODE_LENGTH)
 
-while clue_report != "CODE CRACKED!":
+    secret = Secret_Code()
+    while not secret.solved():
+        usr_code =  input(guess_msg)
+        if len(usr_code) == CODE_LENGTH:
+            print(secret.guess(usr_code))
+        else:
+            print('Bad length')
 
-    guess = get_guess()
-
-    clue_report = generate_clues(secret_code,guess)
-    print("here is the result of your guess:")
-    for clue in clue_report:
-        print(clue)
+if __name__ == '__main__':
+    start_game()
