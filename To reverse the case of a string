@@ -1,2 +1,0 @@
-name= input('Enter a word to reverse the case of string \n')
-print(name.swapcase());
