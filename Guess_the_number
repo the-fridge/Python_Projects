@@ -12,10 +12,13 @@ isCorrect = False
 guess = int(input("Take a guess: "))
 
 while secret_number != guess and attempts < 11:
+"""While you haven't guessed the number and your number of attempts are less than 11, the program will let you guess the number"""
 
     if guess < secret_number:
+    """If the number you guessed is higher than the secret_number"""
         print("Higher...")
     elif guess > secret_number:
+    """If the number you guessed is lower than the secret_number"""
         print("Lower...")
     guess = int(input("Take a guess: "))
     attempts += 1
