@@ -6,7 +6,7 @@ Takes user's name as input and returns a random type of house they'll have when 
 
 import random
 
-future = ['bungalow','mansion','villa']
+future = ['bungalow','mansion','villa', 'delux', 'tree-house', 'rock-house']
 
 name = input("What is your name?\n")
 
