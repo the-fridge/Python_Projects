@@ -1,0 +1,3 @@
+name= input('Enter a word to reverse the case of string \n')
+print('Original string: ', name)
+print('Reverse Cased string: ',name.swapcase());
