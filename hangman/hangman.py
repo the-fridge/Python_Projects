@@ -1,5 +1,6 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# author: Pierre Bouillon
 
 import os 
 from os import stat
@@ -8,6 +9,14 @@ import random
 from random import randint
 
 class Hangman_Game(object):
+    """ Hangman game
+
+    Attributes:
+        - _lifes : (int) life remaining before game over
+        - _secret_word    : (str) word to guess
+        - _displayed_word : (str) user display
+        - _wrong_letters  : (char[]) letters not in the word
+    """
     def __init__(self):
         self._lifes = 5
         self._secret_word    = self._get_random()
@@ -15,6 +24,11 @@ class Hangman_Game(object):
         self._wrong_letters  = []
 
     def _check_win(self):
+        """ Check if the word is guessed
+
+        Return:
+            - True if _secret_word and _displayed_word are the same
+        """
         displayed = [c for c in self._displayed_word]
         found = True
         for i in range(len(self._secret_word)):
@@ -25,6 +39,8 @@ class Hangman_Game(object):
 
 
     def _get_random(self):
+        """ Get a random word from a file
+        """
         total_bytes = stat('./dict.txt').st_size
 
         file = open('./dict.txt')
@@ -36,15 +52,16 @@ class Hangman_Game(object):
         return ''.join(secret)
 
     def _set_hidden(self):
+        """ Build _displayed_word
+        """
         clue = ''
         for i in range(len(self._secret_word)):
             clue += '_'
         return clue
 
-    def get_clue (self):
-        return self._displayed_word
-
     def guess(self, letter):
+        """ Get the user letter and check if the word is guessed
+        """
         correct = 0
 
         splitted_display = self._displayed_word.replace(' ','')
@@ -75,7 +92,10 @@ class Hangman_Game(object):
             str(self._wrong_letters))
         print(msg)
 
+
 def play() :
+    """ Start the hangman game
+    """
     game = Hangman_Game()
     while True:
         guess = '__'
