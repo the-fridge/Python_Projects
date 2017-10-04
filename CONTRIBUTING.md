@@ -9,4 +9,5 @@
 * Synnennennen
 * pranavgoel25
 * HargovindArora
-* [pBouillon](https://github.com/pBouillon)
+* jtkaufman737
+* pBouillon
