@@ -1,18 +1,26 @@
+# !/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# authors: jalbertsr / Pierre Bouillon
+
+"""`Project3-weeks_and_days(functions).py` is an implementation 
+of three sorting algorithms with complexity 0(n^2) and the comparison 
+of their execution time
 """
-@author: jalbertsr
-Implementation of three sorting algorithms with complexity 0(n^2) and the comparasion of time execution between them. 
-"""
-#made using python 2
 
 import random
+from random import randint
+import time
 from time import time
 
-lst = [random.randint(0, 200) for x in range(50)]
+def bubble_sort(array): 
+    """ Bubble sort implementation
 
+    Arguments:
+        - array : (int[]) array of int to sort
 
-def bubble_sort(array):
-    
+    Returns:
+        - array : (int[]) sorted numbers
+    """
     for i in range(len(array)):
         for j in range(len(array)-1-i):
              if array[j] > array[j+1]:
@@ -20,7 +28,14 @@ def bubble_sort(array):
     return array
    
 def insertion_sort(array):
-    
+    """ Insertion sort implementation
+
+    Arguments:
+        - array : (int[]) array of int to sort
+
+    Returns:
+        - array : (int[]) sorted numbers
+    """
     for i in range(len(array)):
         j = i
         while j > 0 and array[j] < array[j-1]:
@@ -29,7 +44,14 @@ def insertion_sort(array):
     return array
 
 def selection_sort(array):
-    
+    """ Selection sort implementation
+
+    Arguments:
+        - array : (int[]) array of int to sort
+
+    Returns:
+        - array : (int[]) sorted numbers
+    """
     for slot in range(len(array)-1,0,-1):
         maxpos = 0
         for index in range(slot+1):
@@ -40,43 +62,65 @@ def selection_sort(array):
         array[maxpos] = temp
     return array
         
+def get_sort_time(sort, array):
+    """ Sort an array and return the time for it
 
-t0 = time()
-bubble_sort(lst)
-ft0 = time()
-elapsed0 = ft0 - t0
+    Attribute:
+        - sort  : (func)  sort used 
+        - array : (int[]) array of int to sort
 
-print "Bubble sort algorithm"
-print "Execution time: %.10f sec" % (elapsed0)
-print "==================================="
+    Returns:
+        - : (float) execution time of the function `sort`
+    """
+    t = time()
+    sort(array)
+    return time() - t
 
-t1 = time()
-insertion_sort(lst)
-ft1 = time()
-elapsed1 = ft1 - t1
+def get_random_array(size=50, start=0, end=200):
+    """ Generate a random array of int
 
-print "Insertion sort algorithm"
-print "Execution time: %.10f sec" % (elapsed1)
-print "==================================="
+    Arguments:
+        - size  : (int) size of the array
+        - start : (int) smallest number that can be picked
+        - end   : (int) biggest number that can be picked
 
-t2 = time()
-selection_sort(lst)
-ft2 = time()
-elapsed2 = ft2 - t2
+    Returns:
+        - : (int[]) an array of `size` int
+    """
+    return [randint(start, end) for x in range(size)]
 
-print "Selection sort algorithm"
-print "Execution time: %.10f sec" % (elapsed2)
-print "===================================\n"
+def print_best_sort(algorithms):
+    """ Print sort algorithms results
 
-algorithms = {'Bubble': elapsed0, 'Insertion': elapsed1, 'Selection': elapsed2} 
+    Arguments:
+        algorithms : (dict) values as {algorithm: execution time}
+    """
+    msg = 'Sorts order by efficiency:\n'
 
-print "From best algorithm to worst:\n"
-for key, value in sorted(algorithms.iteritems(), key=lambda (k,v): (v,k)):
-    print "%s: %s" % (key, value)
+    results = sorted(algorithms.items(), key=lambda x:x[1])
+    for result in results:
+        msg += '\t {}: {:10f} seconds\n'.format(result[0], result[1])
+
+    print(msg)
+
+def print_results(algorithms):
+    """ Print best sort algorithms regarding their execution time
+
+    Arguments:
+        algorithms : (dict) values as {algorithm: execution time}
+    """
+    for key in algorithms:
+        msg = '{} sort algorithm:\n'
+        msg+= 'Execution time: {:.10f} seconds\n'
+        msg+= '===================================\n'
+        print(msg.format(key, algorithms[key]))
 
 
-
-
-
-
-
+if __name__ == '__main__':
+    algorithms = {
+            'Bubble':    get_sort_time(bubble_sort, get_random_array()), 
+            'Insertion': get_sort_time(insertion_sort, get_random_array()), 
+            'Selection': get_sort_time(selection_sort, get_random_array())
+            }   
+    print_results(algorithms)
+    print_best_sort(algorithms)

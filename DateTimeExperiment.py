@@ -1,21 +1,60 @@
-# Made using Python 2.x
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# authors: unknown / Pierre Bouillon
+
+"""`DateTimeExperiment.py` prints
+datetime through different functions
+"""
 
 import datetime
+from datetime import datetime
 
-now = datetime.datetime.now()
+def print_from_instance(now):
+    """ Prints each attribute of the current datetime
 
-print
-print "Current date and time using str method of datetime object:"
-print str(now) + "\n"
+    Argument:
+        - now : (datetime) current datetime
+    """
+    msg = 'Current date and time using instance attributes:\n'
+    msg+= '\tyear:   {}\n'
+    msg+= '\tmonth:  {}\n'
+    msg+= '\tday:    {}\n'
+    msg+= '\thour:   {}\n'
+    msg+= '\tminute: {}\n'
+    msg+= '\tsecond: {}\n'
+    msg+= '\tmicrosecond: {}\n'
+    print (msg.format(
+            now.year,
+            now.month,
+            now.day,
+            now.hour,
+            now.minute,
+            now.second,
+            now.microsecond
+        ))
 
-print "Current date and time using instance attributes:"
-print "Current year: %d" % now.year
-print "Current month: %d" % now.month
-print "Current day: %d" % now.day
-print "Current hour: %d" % now.hour
-print "Current minute: %d" % now.minute
-print "Current second: %d" % now.second
-print "Current microsecond: %d" % now.microsecond + "\n"
+def print_from_strftime(now):
+    """ Prints the current datetime with strftime
 
-print "Current date and time using strftime:"
-print now.strftime("%Y-%m-%d %H:%M")
+    Argument:
+        - now : (datetime) current datetime
+    """
+    msg = 'Current date from strftime: {}\n'
+    print (msg.format(now.strftime("%Y-%m-%d %H:%M")))
+
+def print_object(now):
+    """ Prints the current datetime raw
+
+    Argument:
+        - now : (datetime) current datetime
+    """
+    msg = 'Current date: {}\n'
+    print (msg.format(now))
+
+
+if __name__ == '__main__':
+    now = datetime.now()
+
+    print_object(now)
+    print_from_instance(now)
+    print_from_strftime(now)
