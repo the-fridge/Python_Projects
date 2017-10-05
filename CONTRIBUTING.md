@@ -1,14 +1,18 @@
-/* A list of contributers to this project (Github handles) */
-/*Add your name here if you contributed to the projects too*/
+# List of contributers to this project
+* [CrazyLlama](https://github.com/CrazyLlama)
+* [csurfus](https://github.com/csurfus)
+* [HargovindArora](https://github.com/HargovindArora)
+* [jtkaufman737](https://github.com/jtkaufman737)
+* [Marwan2001](https://github.com/Marwan2001)
+* [pBouillon](https://github.com/pBouillon)
+* [pranavgoel25](https://github.com/pranavgoel25)
+* [Synnennennen](https://github.com/Synnennennen)
+* [yogithapolavarapu](https://github.com/yogithapolavarapu)
+* [zwmccall](https://github.com/zwmccall)
 
-* Marwan2001
-* yogithapolavarapu
-* csurfus
-* zwmccall
-* CrazyLlama
-* Synnennennen
-* pranavgoel25
-* HargovindArora
-* jtkaufman737
-* pBouillon
+## Add your name when you push on the project (alphabetical order)
 
+# Before each pull request
+* Comment your code
+* Be sure you are using Python 3.x
+* Resolve all the conflicts
