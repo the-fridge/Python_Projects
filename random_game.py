@@ -1,42 +1,99 @@
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# authors: unknown / Pierre Bouillon
+
+"""`random_game.py` is a small game
+in which you have to find a combination of
+CODE_LENGTH numbers
+"""
+
 import random
+from random import sample
+from random import shuffle
 
-def get_guess():
-    return list(input("What is Your Guess?"))
+CODE_LENGTH = 3
+MAX_DIGIT   = 10
 
-def generate_code():
-    digits = [str(num) for num in range(10)]
+class Secret_Code(object):
+    """ Build and check a secret code
+    """
+    def __init__(self):
+        self._solved = False
+        self._code = self._generate ()
 
-    random.shuffle(digits)
+    def _generate(self):
+        """ Generate the secret code
 
-    return digits[:3]
+        Pick CODE_LENGTH numbers between 0 and MAX_DIGIT
 
-def generate_clues(code,user_guess):
-    clues = []
-    if user_guess == code:
-        return "CODE CRACKED!"
+        Returns:
+            - : (int[]) A 3 digits code 
+        """
+        code = [num for num in range(MAX_DIGIT)]
+        return sample(code, CODE_LENGTH)
 
-    for ind,num in enumerate(user_guess):
-        if num == code[ind]:
-            clues.append("match")
-        elif num in code:
-            clues.append("Close")
+    def _get_matches(self, usr_list):
+        """ Parse list and compare it with the secret code
 
-    if clues == []:
-        return ["Nope"]
-    else:
-        return clues
+        Attribute:
+            - usr_list : (int[]) the user input
 
-print ("Welcome Code Breaker!")
+        Returns:
+            - match : (int) number of digits in the right place
+        """
+        match = 0
+        for i in range(len(self._code)):
+            if usr_list[i] == self._code[i]:
+                match += 1
+        return match
 
-secret_code = generate_code()
+    def guess(self, usr_code):
+        """ Compare the user code and the secret code
 
-clue_report = []
+        convert the user code as a list and compare it
+        pass its attribute _solved on true if everything match
 
-while clue_report != "CODE CRACKED!":
+        Arguments:
+            - usr_code : (str) the input of the user
 
-    guess = get_guess()
+        Returns:
+            - 'Well done' if everything match
+            - 'Almost ! {} correct(s)' if not everything match
+            - 'No match' if nothing match
+        """
+        match    = 0
+        usr_code = [int(c) for c in usr_code]
 
-    clue_report = generate_clues(secret_code,guess)
-    print("here is the result of your guess:")
-    for clue in clue_report:
-        print(clue)
+        match = self._get_matches(usr_code)
+
+        if match == len(self._code):
+            self._solved = True
+            return 'Well done !'
+        elif match > 0 :
+            return 'Almost ! {} correct(s)'.format(match)
+        else :
+            return 'No match'
+
+    def solved(self):
+        """ Getter for _solved
+
+        Returns:
+            - _solved : (bool) True if secret code is broken
+        """
+        return self._solved
+
+
+def start_game() :
+    guess_msg = 'Guess the {} digits of the code: '
+    guess_msg = guess_msg.format(CODE_LENGTH)
+
+    secret = Secret_Code()
+    while not secret.solved():
+        usr_code =  input(guess_msg)
+        if len(usr_code) == CODE_LENGTH:
+            print(secret.guess(usr_code))
+        else:
+            print('Bad length')
+
+if __name__ == '__main__':
+    start_game()

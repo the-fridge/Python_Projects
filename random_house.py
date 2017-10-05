@@ -1,15 +1,22 @@
-"""
-Author: Pranav Goel
-Takes user's name as input and returns a random type of house they'll have when they grow up.
-"""
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# authors: Pranav Goel / Pierre Bouillon
 
+"""`random_house.py` is an implementation 
+of the random function `choice` 
+"""
 
 import random
+from random import choice
 
-future = ['bungalow','mansion','villa']
+HOUSES = [
+        'Bungalow',
+        'Mansion',
+        'Villa'
+    ]
 
-name = input("What is your name?\n")
-
-num = random.random()%3
-
-print(name,", you'll have a ",future[int(num)]," when you grow up! :)")
+if __name__ == '__main__':
+    msg = 'Greetings '
+    msg+= input('Enter your name: ')
+    msg+= ', you will have a {} when you grow up ! :)'
+    print(msg.format(choice(HOUSES)))
