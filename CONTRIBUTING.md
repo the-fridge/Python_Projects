@@ -13,6 +13,6 @@
 ## Add your name when you push on the project (alphabetical order)
 
 # Before each pull request
-* Comment your code
+* Comment your code as shown [here](https://google.github.io/styleguide/pyguide.html)
 * Be sure you are using Python 3.x
 * Resolve all the conflicts
