@@ -1,3 +1,5 @@
+#Simple HashSet
+#@author Prohunt
 import sys
 class HashSet:
   cap = sys.maxint/20
