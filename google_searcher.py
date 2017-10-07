@@ -6,10 +6,11 @@ import bs4
 
 
 def main():
+    keyword = input("What you want to search? ")
     if len(sys.argv) > 1:
         keyword = ' '.join(sys.argv[1:])
     else:
-        keyword = pyperclip.paste()
+        keyword = keyword
 
     res = requests.get('http://google.com/search?q=' + keyword)
     res.raise_for_status()
