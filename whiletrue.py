@@ -3,7 +3,7 @@
 # authors: Syed Marwan Jamal / Pierre Bouillon
 
 """`whiletrue.py` never ending 
-loop which prints black lines till the program is stopped
+loop which prints blank lines till the program is stopped
 """
 
 if __name__ == '__main__':
