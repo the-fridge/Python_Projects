@@ -8,14 +8,23 @@ from PIL import Image
 from skimage import io
 import cv2
 
-
+'''
+reads motion jpeg camera, storing one frame into a file
+https://en.wikipedia.org/wiki/Motion_JPEG
+'''
 def get_camera_image(url):
+    '''
+    url - url of the camera to read frame from    
+    '''
     try:
         with urlopen(url) as stream:
             data = b''
             img = None
             i = None
             done = False
+            
+            # read an entire picture
+            # 0xffd8 JPG 0xffd9
             while not done:
                 data += stream.read(1024)
                 start = data.find(b'\xff\xd8')
@@ -25,6 +34,7 @@ def get_camera_image(url):
                     data = data[end + 2:]
                     i = cv2.imdecode(np.fromstring(
                         jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
+                    # make the color correct 
                     i2 = cv2.cvtColor(i, cv2.COLOR_BGR2RGB)
                     img = Image.fromarray(i2)
                     done = True
@@ -37,5 +47,6 @@ def get_camera_image(url):
         return None
 
 if __name__ == "__main__":
+    ''' prog cameraUrl fileName '''
     image = get_camera_image(sys.argv[1])
     image.save(sys.argv[2])
