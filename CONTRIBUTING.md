@@ -9,7 +9,6 @@
 * [Synnennennen](https://github.com/Synnennennen)
 * [yogithapolavarapu](https://github.com/yogithapolavarapu)
 * [zwmccall](https://github.com/zwmccall)
-* [Shubhangi Pandey](https://github.com/meshubhangi)
 
 ## Add your name when you push on the project (alphabetical order)
 
